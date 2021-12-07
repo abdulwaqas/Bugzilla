@@ -1,0 +1,16 @@
+<%if current_user%>
+
+<div class="jumbotron">
+  <h1 class="display-4">
+  <%= current_user.first_name %>
+  <%= current_user.last_name %>
+  
+  
+  </h1>
+  <br/>
+  <p class="lead">   Email :   <%= current_user.email %> </p>
+    <p class="lead"> Role :    <%= current_user.role %></p>
+
+</div>
+
+<% end %>

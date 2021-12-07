@@ -1,0 +1,50 @@
+<%= form_with(model: bug) do |form| %>
+  <% if bug.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(bug.errors.count, "error") %> prohibited this bug from being saved:</h2>
+
+      <ul>
+        <% bug.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+<%if current_user.role == 'Admin'%>
+  <div class="field">
+    <%= form.label :status %>
+    
+    <% @users.each do |user|%>
+    <%if user.role=='Developer'%>
+    <%= form.radio_button :status, (user.first_name + " " + user.last_name)%> <%= form.label (user.first_name + " " + user.last_name) %> <br />
+    
+    <% end %>
+    
+    <% end %>
+    
+  </div>
+
+<% end %>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

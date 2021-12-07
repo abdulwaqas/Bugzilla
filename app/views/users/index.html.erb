@@ -1,0 +1,26 @@
+
+
+
+<h1>All Users</h1>
+
+<% @usercount%>
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>user name</th>
+      <th>email</th>
+      <th>role</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to (user.first_name+" "+user.last_name) , edit_user_registration_path%></td>
+        <td><%= user.email %></td>
+        <td><%= user.role %></td>
+      
+      </tr>
+    <% end %>
+  </tbody>
+</table>
