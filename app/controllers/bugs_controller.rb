@@ -10,7 +10,7 @@ class BugsController < ApplicationController
 
   # GET /bugs/1 or /bugs/1.json
   def show
-    # authorize Bug
+    authorize Bug
   end
 
   # GET /bugs/new
@@ -28,7 +28,7 @@ class BugsController < ApplicationController
 
   # POST /bugs or /bugs.json
   def create
-    # authorize Bug
+    authorize Bug
     @bug = Bug.new(bug_params)
 
     respond_to do |format|
@@ -44,7 +44,7 @@ class BugsController < ApplicationController
 
   # PATCH/PUT /bugs/1 or /bugs/1.json
   def update
-    # authorize Bug
+    authorize Bug
     respond_to do |format|
       if @bug.update(bug_params)
         format.html { redirect_to @bug, notice: "Bug was successfully updated." }
@@ -58,7 +58,7 @@ class BugsController < ApplicationController
 
   # DELETE /bugs/1 or /bugs/1.json
   def destroy
-    # authorize Bug
+    authorize Bug
     @bug.destroy
     respond_to do |format|
       format.html { redirect_to bugs_url, notice: "Bug was successfully destroyed." }

@@ -16,15 +16,10 @@
     <% @bugs.each do |bug| %>
       <tr>
       
-      <%# <% if current_user.role=='Admin'||current_user.role=='QA'||(current_user.role=='Developer'&& bug.status==(current_user.first_name+ " "+current_user.last_name)) %> %>
+      
         <td><%= link_to bug.title ,bug  %></td>
         <td><%= bug.status %></td>
-      <%# <% end %> %>
       
-
-        
-      
-     
       
       </tr>
     <% end %>

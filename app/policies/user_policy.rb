@@ -8,6 +8,8 @@ class UserPolicy < ApplicationPolicy
   def index?
     return true if user.present? and user.role=='Admin'
   end
-
+  def showdev?
+    return true if user.role == "Developer"
+  end
   
 end
