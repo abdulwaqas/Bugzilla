@@ -11,15 +11,10 @@
     </tr>
   </thead>
 
-
-
     <% @bugs.each do |bug| %>
-      <tr>
-      
-      
+      <tr>      
         <td><%= link_to bug.title ,bug  %></td>
         <td><%= bug.status %></td>
-      
       
       </tr>
     <% end %>

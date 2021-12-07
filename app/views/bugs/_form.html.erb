@@ -22,9 +22,10 @@
     <%= form.label :description %>
     <%= form.text_area :description %>
   </div>
-<%if current_user.role == 'Admin'%>
-  <div class="field">
+   <div class="field">
     <%= form.label :status %>
+<%if current_user.role == 'Admin'%>
+ 
     
     <% @users.each do |user|%>
     <%if user.role=='Developer'%>
@@ -34,9 +35,15 @@
     
     <% end %>
     
-  </div>
+  
 
+  <%elsif current_user.role == 'QA' and bug.status=="resolved"%>
+
+<%= form.radio_button :status, 'Done'%> Done <br />
+  <%elsif (current_user.role == 'Developer' and (bug.status == (current_user.first_name + " " + current_user.last_name)))%>
+<%= form.radio_button :status, 'resolved'%> resolved <br />
 <% end %>
+</div>
 
   <div class="field">
     <%= form.label :image %>

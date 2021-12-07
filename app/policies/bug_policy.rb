@@ -1,15 +1,17 @@
 class BugPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.all
+      if user.role=='Admin'
+        scope.all
+      elsif(user.role=='QA')
+        scope.where(status: "resolved")
+      elsif(user.role=="Developer")
+        scope.where(status: (user.first_name+ " "+user.last_name))
+
+      end
     end
   end
-  attr_reader :user, :bug
 
-  def initialize(user, bug)
-    @user = user
-    @bug = bug
-  end
 def index?
   
     return true if user.present? 
@@ -21,15 +23,36 @@ def index?
   return true if user.present?
   end
   def create?
-    return true if user.present? and (user.role=='Admin'||user.role=='Admin')
+    return true if user.present? and (user.role=='Admin'||user.role=='QA')
   end
   def update?
-    return true if user.present? 
+    if user.present? 
+      return true
+    else
+      
+    end
   end
 
     
   def destroy?
     return true if user.present? and user.role=='Admin'
+  end
+
+
+
+
+
+
+
+  
+
+  def new?
+    create?
+  end
+
+
+  def edit?
+    update?
   end
 
 end

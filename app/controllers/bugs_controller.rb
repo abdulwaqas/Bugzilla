@@ -4,7 +4,7 @@ class BugsController < ApplicationController
   # GET /bugs or /bugs.json
   def index
     @users=User.all
-    @bugs = Bug.all
+    @bugs = policy_scope(Bug.all)
     authorize Bug
   end
 
@@ -17,13 +17,13 @@ class BugsController < ApplicationController
   def new
     @users=User.all
     @bug = Bug.new
-    # authorize Bug
+    authorize Bug
   end
 
   # GET /bugs/1/edit
   def edit
     @users=User.all
-    # authorize Bug
+    authorize Bug
   end
 
   # POST /bugs or /bugs.json
@@ -44,7 +44,8 @@ class BugsController < ApplicationController
 
   # PATCH/PUT /bugs/1 or /bugs/1.json
   def update
-    authorize Bug
+    @bug = Bug.find(params[:id])
+    authorize @bug
     respond_to do |format|
       if @bug.update(bug_params)
         format.html { redirect_to @bug, notice: "Bug was successfully updated." }
