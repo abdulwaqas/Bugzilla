@@ -1,5 +1,6 @@
 class BugsController < ApplicationController
   before_action :set_bug, only: %i[ show edit update destroy ]
+  
 
   # GET /bugs or /bugs.json
   def index

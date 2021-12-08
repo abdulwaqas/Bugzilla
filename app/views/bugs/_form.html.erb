@@ -42,13 +42,24 @@
 <%= form.radio_button :status, 'Done'%> Done <br />
   <%elsif (current_user.role == 'Developer' and (bug.status == (current_user.first_name + " " + current_user.last_name)))%>
 <%= form.radio_button :status, 'resolved'%> resolved <br />
+
 <% end %>
+
+<% if (bug.status == nil and current_user.role == 'QA')%>
+
+  
+  <%=form.radio_button :status, '  ',:checked => true %>
+  
+<% end %>
+
 </div>
 
   <div class="field">
     <%= form.label :image %>
     <%= form.file_field :image %>
   </div>
+
+
 
 
   <div class="actions">

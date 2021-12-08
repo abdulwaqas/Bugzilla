@@ -4,7 +4,8 @@ class BugPolicy < ApplicationPolicy
       if user.role=='Admin'
         scope.all
       elsif(user.role=='QA')
-        scope.where(status: "resolved")
+        
+        scope.where.not(status: 'Done' )
       elsif(user.role=="Developer")
         scope.where(status: (user.first_name+ " "+user.last_name))
 
